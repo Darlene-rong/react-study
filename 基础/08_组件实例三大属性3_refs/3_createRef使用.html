@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="test"></div>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+    class Demo extends React.Component {
+      myInput1 = React.createRef()
+      myInput2 = React.createRef()
+
+     showData1 = () => {
+       alert(this.myInput1.current.value)
+     }
+     showData2 = () => {
+       alert(this.myInput2.current.value)
+     }
+     render() {
+       return (
+         <div>
+           <input ref={this.myInput1} type="text"/>
+           <button onClick={this.showData1}>点击提示数据</button><br/>
+           <input ref={this.myInput2} type="text" onBlur={this.showData2} />
+         </div>
+       )
+     }
+   }
+   ReactDOM.render(<Demo/>, document.getElementById('test'))
+ </script>
+</body>
+
+</html>

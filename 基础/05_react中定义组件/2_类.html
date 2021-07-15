@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+      总结：
+        1.类中的构造器不是必须写的
+          在需要对实例进行一些初始化的操作的时候再使用
+          如：添加指定对象等
+        2. 子类继承了父类，且要在子类中添加新的对象
+           需要调用super
+        3.类中所定义的方法，都是放在了类的原型对象上，供实例去使用
+    */
+    // 创建一个 P 类
+    class Person {
+      // 构造器constructor()方法
+      constructor (name) {
+        // 构造器中的this指的是类的实例对象 （p1）
+        this.name = name;
+      }
+      say() {
+        // say方法 在__prop__ 类的原型对象上，供实例使用
+        // 通过 Person 实例对象调用say方法时，say中的this就是Person的实例对象
+        console.log(`hello， ${this.name}`)
+      }
+    }
+    // 创建一个Person 的实例对象 P1
+    var p1 = new Person('xxx');
+    console.log(p1)
+
+
+    // 类的继承 
+    class Student extends Person {
+      constructor( name, age, grade) {
+        super(name, age);
+        this.grade = grade;
+      }
+      speak() {
+        console.log(`hello， ${this.name}hello， ${this.grade}`)
+      }
+    }
+    const s1 = new Student('xg', 11, '一年级');
+    console.log(s1);
+    s1.say()
+  </script>
+</body>
+</html>

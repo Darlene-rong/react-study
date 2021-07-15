@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2_受控组件</title>
+</head>
+<body>
+	<div id="test"></div>
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+		// 创建组件
+		class Login extends React.Component{
+			state = {
+				username:'dddd',
+				password:''
+			}
+			// 表单提交的回调
+			handleSubmit = (event)=>{
+				event.preventDefault() // 阻止表单提交
+				const {username,password} = this.state
+				alert(`你输入的用户名是：${username},你输入的密码是：${password}`)
+			}
+			onModel = (state, event) => {
+				this.setState({[state]:event.target.value})
+				console.log(this.state[state],'ppp')
+			}
+			render(){
+				return(
+					<form onSubmit={this.handleSubmit}>
+						用户名：<input onChange={(e)=>{this.onModel('username', e)}} value={this.state.username} type="text" name="username"/>
+						密码：<input onChange={(e)=>{this.onModel('password', e)}} type="password" name="password"/>
+						<button>登录</button>
+					</form>
+				)
+			}
+		}
+		// 渲染组件
+		ReactDOM.render(<Login/>,document.getElementById('test'))
+	</script>
+</body>
+</html>
